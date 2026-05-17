@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Atelier IA — Tokens, vecteurs et embeddings</title>
+
+    <style>
+
+        body{
+            margin:0;
+            font-family:Arial, Helvetica, sans-serif;
+            background:#f5f3ee;
+            color:#111;
+        }
+
+        /* ========================= */
+        /* HEADER                    */
+        /* ========================= */
+
+        .topbar{
+            background:white;
+            border-bottom:1px solid #ddd;
+            padding:28px 0;
+        }
+
+        .topbar-inner{
+            width:1200px;
+            margin:auto;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .logo{
+            font-size:54px;
+            font-weight:900;
+            letter-spacing:-2px;
+        }
+
+        .logo span{
+            color:#f5b400;
+        }
+
+        .menu{
+            display:flex;
+            gap:40px;
+            font-weight:bold;
+            font-size:15px;
+        }
+
+        .menu a{
+            text-decoration:none;
+            color:black;
+        }
+
+        .menu a:hover{
+            color:#f5b400;
+        }
+
+        .menu-active{
+            color:#f5b400 !important;
+        }
+
+        .mojo{
+            background:#f5b400;
+            text-align:center;
+            font-weight:bold;
+            padding:14px;
+            font-size:24px;
+        }
+
+        /* ========================= */
+        /* HERO                      */
+        /* ========================= */
+
+        .hero{
+            width:1200px;
+            margin:70px auto;
+            display:grid;
+            grid-template-columns:1fr 460px;
+            gap:70px;
+            align-items:center;
+        }
+
+        .tag{
+            display:inline-block;
+            background:#f5d76a;
+            padding:6px 12px;
+            font-size:14px;
+            font-weight:bold;
+            margin-bottom:24px;
+        }
+
+        h1{
+            font-size:78px;
+            line-height:0.95;
+            margin:0;
+            font-weight:900;
+            letter-spacing:-4px;
+        }
+
+        .yellow-line{
+            width:60px;
+            height:4px;
+            background:#f5b400;
+            margin:35px 0;
+        }
+
+        .hero p{
+            font-size:28px;
+            line-height:1.6;
+            max-width:760px;
+        }
+
+        /* ========================= */
+        /* HERO CARD                 */
+        /* ========================= */
+
+        .hero-card{
+            background:white;
+            border:1px solid #e5d4a4;
+            border-radius:22px;
+            padding:50px;
+        }
+
+        .vector-demo{
+            display:grid;
+            grid-template-columns:1fr 80px 1fr;
+            align-items:center;
+            text-align:center;
+        }
+
+        .circle{
+            width:72px;
+            height:72px;
+            border-radius:50%;
+            border:4px solid #f5b400;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            margin:auto;
+            font-size:28px;
+            font-weight:bold;
+            color:#f5b400;
+        }
+
+        .circle-blue{
+            border-color:#1876d2;
+            color:#1876d2;
+        }
+
+        .arrow{
+            font-size:50px;
+            font-weight:bold;
+        }
+
+        .vector-title{
+            font-size:36px;
+            font-weight:bold;
+            margin-top:20px;
+        }
+
+        .vector-text{
+            font-size:22px;
+            line-height:1.6;
+            margin-top:10px;
+        }
+
+        /* ========================= */
+        /* CONTENT                   */
+        /* ========================= */
+
+        .content{
+            width:1200px;
+            margin:auto;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(5,1fr);
+            gap:0;
+            margin-top:60px;
+            margin-bottom:100px;
+        }
+
+        .card{
+            background:white;
+            border:1px solid #e5d4a4;
+            padding:28px;
+        }
+
+        .number{
+            width:46px;
+            height:46px;
+            border-radius:50%;
+            background:#f5b400;
+            color:white;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:bold;
+            font-size:22px;
+            margin-bottom:22px;
+        }
+
+        .card h3{
+            margin-top:0;
+            font-size:34px;
+            line-height:1.1;
+        }
+
+        .card p{
+            font-size:18px;
+            line-height:1.7;
+        }
+
+        .card ul{
+            padding-left:20px;
+            line-height:1.9;
+            font-size:18px;
+        }
+
+        /* ========================= */
+        /* BUTTONS                   */
+        /* ========================= */
+
+        .buttons{
+            margin-top:50px;
+            display:flex;
+            gap:20px;
+            flex-wrap:wrap;
+        }
+
+        .btn{
+            display:inline-block;
+            padding:16px 24px;
+            border-radius:10px;
+            text-decoration:none;
+            font-weight:bold;
+            transition:0.2s;
+            font-size:18px;
+        }
+
+        .btn-main{
+            background:#f5b400;
+            color:black;
+        }
+
+        .btn-main:hover{
+            background:#e2a400;
+        }
+
+        .btn-secondary{
+            background:#efefef;
+            color:black;
+        }
+
+        .btn-secondary:hover{
+            background:#ddd;
+        }
+
+        /* ========================= */
+        /* FOOTER                    */
+        /* ========================= */
+
+        footer{
+            margin-top:100px;
+            background:white;
+            border-top:1px solid #ddd;
+            text-align:center;
+            padding:50px;
+            font-size:16px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <div class="topbar">
+
+        <div class="topbar-inner">
+
+            <div class="logo">
+                <span>SUN</span>LAB IA
+            </div>
+
+            <div class="menu">
+                <a href="index.html">ACCUEIL</a>
+                <a href="#" class="menu-active">ATELIERS & PROJETS</a>
+                <a href="#">RESSOURCES</a>
+                <a href="#">À PROPOS</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="mojo">
+        NOTRE MOJO : APPRENDRE, FABRIQUER, PARTAGER
+    </div>
+
+    <!-- HERO -->
+
+    <div class="hero">
+
+        <div>
+
+            <div class="tag">
+                ATELIER
+            </div>
+
+            <h1>
+                Comprendre les tokens et les embeddings avec Roi et Reine
+            </h1>
+
+            <div class="yellow-line"></div>
+
+            <p>
+                Un atelier interactif pour découvrir comment les intelligences
+                artificielles transforment les mots en vecteurs numériques
+                afin de représenter le sens, les relations et les concepts.
+            </p>
+
+            <div class="buttons">
+
+                <a class="btn btn-main"
+                   href="https://github.com/sunlab-ia/Sunlab-IA/blob/main/4-Tokens-Roi_et_Reine.py">
+                    Voir le code Python
+                </a>
+
+                <a class="btn btn-secondary"
+                   href="index.html">
+                    Retour à l'accueil
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT CARD -->
+
+        <div class="hero-card">
+
+            <div class="vector-demo">
+
+                <div>
+
+                    <div class="circle">
+                        ROI
+                    </div>
+
+                    <div class="vector-title">
+                        Tokens
+                    </div>
+
+                    <div class="vector-text">
+                        Mots et concepts
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+                <div>
+
+                    <div class="circle circle-blue">
+                        V
+                    </div>
+
+                    <div class="vector-title">
+                        Embeddings
+                    </div>
+
+                    <div class="vector-text">
+                        Vecteurs numériques
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+        <div class="grid">
+
+            <!-- CARD 1 -->
+
+            <div class="card">
+
+                <div class="number">1</div>
+
+                <h3>
+                    Objectif de l’atelier
+                </h3>
+
+                <p>
+                    Comprendre comment une IA peut représenter les mots
+                    sous forme de coordonnées numériques dans un espace
+                    vectoriel.
+                </p>
+
+            </div>
+
+            <!-- CARD 2 -->
+
+            <div class="card">
+
+                <div class="number">2</div>
+
+                <h3>
+                    Concepts abordés
+                </h3>
+
+                <ul>
+                    <li>Tokens</li>
+                    <li>Vecteurs</li>
+                    <li>Embeddings</li>
+                    <li>Proximité sémantique</li>
+                    <li>Axes de sens</li>
+                </ul>
+
+            </div>
+
+            <!-- CARD 3 -->
+
+            <div class="card">
+
+                <div class="number">3</div>
+
+                <h3>
+                    Le logiciel
+                </h3>
+
+                <p>
+                    Un programme Python interactif permettant de visualiser
+                    graphiquement la manière dont les mots peuvent être
+                    positionnés dans un espace de représentation.
+                </p>
+
+            </div>
+
+            <!-- CARD 4 -->
+
+            <div class="card">
+
+                <div class="number">4</div>
+
+                <h3>
+                    Déroulé du scénario
+                </h3>
+
+                <ul>
+                    <li>Découverte des mots</li>
+                    <li>Classement masculin/féminin</li>
+                    <li>Relations familiales</li>
+                    <li>Distances sémantiques</li>
+                    <li>Construction progressive des axes</li>
+                </ul>
+
+            </div>
+
+            <!-- CARD 5 -->
+
+            <div class="card">
+
+                <div class="number">5</div>
+
+                <h3>
+                    Informations techniques
+                </h3>
+
+                <ul>
+                    <li>Python 3</li>
+                    <li>Pygame</li>
+                    <li>Visualisation temps réel</li>
+                    <li>Atelier open-source</li>
+                    <li>Licence MIT</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        SUNLAB IA — Ateliers pédagogiques open-source autour de l’intelligence artificielle
+
+    </footer>
+
+</body>
+
+</html>
