@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SUNLAB IA - Ateliers pédagogiques</title>
+
+    <style>
+
+        body{
+            margin:0;
+            font-family:Arial, Helvetica, sans-serif;
+            background:#f5f3ee;
+            color:#111;
+        }
+
+        /* ========================= */
+        /* HEADER                    */
+        /* ========================= */
+
+        .topbar{
+            background:white;
+            border-bottom:1px solid #ddd;
+            padding:28px 0;
+        }
+
+        .topbar-inner{
+            width:1200px;
+            margin:auto;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .logo{
+            font-size:54px;
+            font-weight:900;
+            letter-spacing:-2px;
+        }
+
+        .logo span{
+            color:#f5b400;
+        }
+
+        .menu{
+            display:flex;
+            gap:40px;
+            font-weight:bold;
+            font-size:15px;
+        }
+
+        .menu a{
+            text-decoration:none;
+            color:black;
+        }
+
+        .menu a:hover{
+            color:#f5b400;
+        }
+
+        .mojo{
+            background:#f5b400;
+            text-align:center;
+            font-weight:bold;
+            padding:14px;
+            font-size:24px;
+        }
+
+        /* ========================= */
+        /* HERO                      */
+        /* ========================= */
+
+        .hero{
+            width:1200px;
+            margin:80px auto 40px auto;
+            display:grid;
+            grid-template-columns:1fr 500px;
+            gap:60px;
+            align-items:center;
+        }
+
+        .tag{
+            display:inline-block;
+            background:#f5d76a;
+            padding:6px 12px;
+            font-size:14px;
+            font-weight:bold;
+            margin-bottom:24px;
+        }
+
+        h1{
+            font-size:82px;
+            line-height:0.95;
+            margin:0;
+            font-weight:900;
+            letter-spacing:-4px;
+        }
+
+        .hero p{
+            margin-top:35px;
+            font-size:26px;
+            line-height:1.6;
+            max-width:700px;
+        }
+
+        .hero-card{
+            background:white;
+            border:1px solid #e5d4a4;
+            border-radius:22px;
+            padding:40px;
+        }
+
+        .hero-card h2{
+            margin-top:0;
+            font-size:36px;
+        }
+
+        .hero-card p{
+            font-size:20px;
+            line-height:1.6;
+        }
+
+        /* ========================= */
+        /* ATELIERS                  */
+        /* ========================= */
+
+        .section{
+            width:1200px;
+            margin:80px auto;
+        }
+
+        .section-title{
+            font-size:46px;
+            font-weight:900;
+            margin-bottom:40px;
+        }
+
+        .atelier-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+            gap:30px;
+        }
+
+        .atelier-card{
+            background:white;
+            border:1px solid #e5d4a4;
+            border-radius:18px;
+            padding:32px;
+            transition:0.2s;
+        }
+
+        .atelier-card:hover{
+            transform:translateY(-4px);
+        }
+
+        .atelier-number{
+            width:48px;
+            height:48px;
+            border-radius:50%;
+            background:#f5b400;
+            color:white;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:bold;
+            margin-bottom:20px;
+            font-size:22px;
+        }
+
+        .atelier-card h3{
+            font-size:34px;
+            margin-top:0;
+            margin-bottom:18px;
+        }
+
+        .atelier-card p{
+            line-height:1.7;
+            font-size:18px;
+            min-height:110px;
+        }
+
+        .buttons{
+            display:flex;
+            gap:12px;
+            flex-wrap:wrap;
+        }
+
+        .btn{
+            padding:12px 18px;
+            border-radius:10px;
+            text-decoration:none;
+            font-weight:bold;
+            transition:0.2s;
+        }
+
+        .btn-main{
+            background:#f5b400;
+            color:black;
+        }
+
+        .btn-main:hover{
+            background:#e2a400;
+        }
+
+        .btn-secondary{
+            background:#f1f1f1;
+            color:black;
+        }
+
+        .btn-secondary:hover{
+            background:#ddd;
+        }
+
+        /* ========================= */
+        /* FOOTER                    */
+        /* ========================= */
+
+        footer{
+            margin-top:100px;
+            padding:50px;
+            text-align:center;
+            background:white;
+            border-top:1px solid #ddd;
+            font-size:16px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <div class="topbar">
+
+        <div class="topbar-inner">
+
+            <div class="logo">
+                <span>SUN</span>LAB IA
+            </div>
+
+            <div class="menu">
+                <a href="#">ACCUEIL</a>
+                <a href="#">ATELIERS</a>
+                <a href="#">RESSOURCES</a>
+                <a href="#">À PROPOS</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="mojo">
+        APPRENDRE • COMPRENDRE • EXPÉRIMENTER
+    </div>
+
+    <!-- HERO -->
+
+    <div class="hero">
+
+        <div>
+
+            <div class="tag">
+                PLATEFORME PÉDAGOGIQUE OPEN SOURCE
+            </div>
+
+            <h1>
+                Comprendre l’intelligence artificielle en la voyant fonctionner
+            </h1>
+
+            <p>
+                SUNLAB IA propose des ateliers interactifs permettant
+                de découvrir les réseaux de neurones, les embeddings,
+                les Transformers, les agents IA et les grands concepts
+                de l’intelligence artificielle moderne.
+            </p>
+
+        </div>
+
+        <div class="hero-card">
+
+            <h2>Objectif du projet</h2>
+
+            <p>
+                Ces ateliers ont été conçus pour rendre les concepts
+                d’intelligence artificielle accessibles au grand public,
+                aux FabLabs, aux enseignants, aux étudiants et aux jeunes.
+            </p>
+
+            <p>
+                Chaque atelier combine :
+            </p>
+
+            <ul>
+                <li>des démonstrations visuelles</li>
+                <li>du code Python interactif</li>
+                <li>des explications progressives</li>
+                <li>une approche pédagogique concrète</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <!-- ATELIERS -->
+
+    <div class="section">
+
+        <div class="section-title">
+            Les ateliers
+        </div>
+
+        <div class="atelier-grid">
+
+            <!-- ATELIER 1 -->
+
+            <div class="atelier-card">
+
+                <div class="atelier-number">1</div>
+
+                <h3>Réseaux de neurones</h3>
+
+                <p>
+                    Découvrir comment un réseau de neurones apprend
+                    progressivement à transformer des entrées simples
+                    en prédictions probabilistes.
+                </p>
+
+                <div class="buttons">
+
+                    <a class="btn btn-main"
+                       href="atelier_reseau_neurones_page.html">
+                        Voir l’atelier
+                    </a>
+
+                    <a class="btn btn-secondary"
+                       href="https://github.com/sunlab-ia/Sunlab-IA/blob/main/1-AtelierReseauNeurones.py">
+                        Code Python
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- ATELIER 2 -->
+
+            <div class="atelier-card">
+
+                <div class="atelier-number">2</div>
+
+                <h3>Vecteurs & embeddings</h3>
+
+                <p>
+                    Comprendre comment les IA transforment les mots
+                    en vecteurs numériques pour représenter le sens.
+                </p>
+
+                <div class="buttons">
+
+                    <a class="btn btn-main"
+                       href="#">
+                        Voir l’atelier
+                    </a>
+
+                    <a class="btn btn-secondary"
+                       href="#">
+                        Code Python
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- ATELIER 3 -->
+
+            <div class="atelier-card">
+
+                <div class="atelier-number">3</div>
+
+                <h3>Attention & Transformers</h3>
+
+                <p>
+                    Explorer les mécanismes d’attention qui permettent
+                    aux modèles modernes comme ChatGPT de comprendre
+                    les relations entre les mots.
+                </p>
+
+                <div class="buttons">
+
+                    <a class="btn btn-main"
+                       href="#">
+                        Voir l’atelier
+                    </a>
+
+                    <a class="btn btn-secondary"
+                       href="#">
+                        Code Python
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+
+        SUNLAB IA — Plateforme pédagogique open-source autour de l’intelligence artificielle
+
+    </footer>
+
+</body>
+
+</html>
